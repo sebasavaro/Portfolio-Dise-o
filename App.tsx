@@ -345,7 +345,7 @@ const App: React.FC = () => {
           </div>
           <div className="max-w-2xl">
             <p className="text-xl md:text-3xl font-semibold text-zinc-400 border-l-8 border-white pl-8 py-2 leading-tight italic">
-              "Diseñador gráfico enfocado en comunicación de alto impacto. Transformo la urgencia en piezas visuales audaces y directas."
+              "Diseñador gráfico enfocado en comunicación de alto impacto. Transformo deseos en piezas visuales audaces y directas."
             </p>
           </div>
         </div>
