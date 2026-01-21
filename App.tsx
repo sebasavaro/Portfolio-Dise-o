@@ -189,7 +189,7 @@ const App: React.FC = () => {
       gallery: [
         'https://drive.google.com/file/d/1BD-EtPpDpkr6OViCtA4UJxpHXHSNx9gY/view?usp=sharing',
         'https://drive.google.com/file/d/1MP1jWFLv-4egJPkJ9nS5n0ng05FmqiXF/view?usp=sharing',
-        'https://drive.google.com/file/d/1UyQuVrdZrpq-Z612BjJYCAM0N317lu-l/view?usp=sharing'
+        'https://drive.google.com/file/d/1UyQuVrdZrpq-Z612BjJYCAM0N317lu-l/view?usp=sharing',
       ],
       details: [
         'Tipografía: Uso de Archivo Black por su peso visual.',
@@ -221,8 +221,9 @@ const App: React.FC = () => {
       image: 'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
       gallery: [
         'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
-        'https://drive.google.com/file/d/1nGh-pngnQdHdkXzlNe3MlTdROkMLq4a1/view?usp=sharing',
-        'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format'
+        'https://drive.google.com/file/d/1CRuXRJdLsSHx_eyhNJkPqhBjP6m2jR7y/view?usp=sharing',
+        'https://drive.google.com/file/d/15Jxb7hqRi1DBbMRPFq91dM3_CZbPKkTe/view?usp=sharing',
+        'https://drive.google.com/file/d/1g3v05XrgMDojzYy9Nq9Rc5KkfoYxCJD-/view?usp=sharing'
       ],
       details: [
         'Concepto: "Velocidad y Precisión" basado en aerodinámica.',
