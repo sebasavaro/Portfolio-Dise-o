@@ -12,7 +12,7 @@ const PROJECT_THEMES: Record<string, string> = {
 // Configuración de contacto
 const CONTACT_CONFIG = {
   whatsapp: "5493512046295", 
-  defaultMessage: "Hola Sebastian, vi tu portafolio y me gustaría hablar sobre un proyecto de diseño."
+  defaultMessage: "Hola Sebastian, vi tu portafolio y me gustaría hablar sobre un proyecto."
 };
 
 /**
