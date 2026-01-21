@@ -302,7 +302,7 @@ const App: React.FC = () => {
       <header className="max-w-6xl mx-auto mb-32 mt-12 md:mt-24">
         <div className="flex flex-col gap-10">
           <div className="text-7xl md:text-9xl font-display font-black leading-[0.85] text-impact tracking-tighter">
-            <InteractiveTitle text="SEBASTIAN" />
+            <InteractiveTitle text="SEBASTIÁN" />
             <InteractiveTitle text="AVARO." />
           </div>
           <div className="max-w-2xl">
