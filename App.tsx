@@ -2,6 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Project, Skill } from './types';
 
+// Mapa centralizado de colores por proyecto para mantener coherencia visual
+const PROJECT_THEMES: Record<string, string> = {
+  'breaking-news': '#FF0000', // Rojo Impacto
+  'youtube-ctr': '#FFCC00',    // Amarillo YouTube
+  'rar-automotores': '#0061FF' // Azul Eléctrico
+};
+
 // Función de utilidad para convertir enlaces de Google Drive a enlaces directos de imagen
 const getDriveDirectLink = (url: string) => {
   if (url.includes('drive.google.com')) {
@@ -19,8 +26,10 @@ const SectionHeader: React.FC<{ title: string; subtitle?: string }> = ({ title, 
   </div>
 );
 
-// Componente de Galería / Página de Proyecto
+// Componente de Galería / Página de Proyecto (AHORA DINÁMICO)
 const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  const accentColor = PROJECT_THEMES[project.id] || '#0061FF';
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
@@ -31,7 +40,7 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
     <div className="fixed inset-0 z-50 bg-black overflow-y-auto animate-in fade-in duration-500">
       <nav className="sticky top-0 z-[60] bg-black/95 backdrop-blur-md border-b border-zinc-800 px-6 py-4 flex justify-between items-center">
         <span className="font-display font-black text-xs md:text-sm tracking-tighter uppercase truncate mr-4 text-zinc-500">
-          Proyecto / {project.title}
+          Proyecto / <span style={{ color: accentColor }}>{project.title}</span>
         </span>
         <button 
           onClick={onClose}
@@ -46,25 +55,27 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
           <div className="lg:w-3/5 flex flex-col justify-start">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-black uppercase leading-[1] mb-10 tracking-tighter break-words">
               {project.title.split(':').map((part, i) => (
-                <span key={i} className={i === 1 ? "text-[#0061FF] block mt-2" : "block"}>
+                <span key={i} className="block" style={{ color: i === 1 ? accentColor : 'white', marginTop: i === 1 ? '0.5rem' : '0' }}>
                   {part.trim()}
                 </span>
               ))}
             </h1>
-            <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-light italic border-l-4 border-[#0061FF] pl-6 max-w-xl">
+            <p className="text-lg md:text-xl text-zinc-300 leading-relaxed font-light italic border-l-4 pl-6 max-w-xl" style={{ borderColor: accentColor }}>
               {project.concept}
             </p>
           </div>
 
           <div className="lg:w-2/5">
-            <div className="bg-zinc-900/80 p-6 md:p-10 border-t-4 border-white lg:sticky lg:top-28">
+            <div className="bg-zinc-900/80 p-6 md:p-10 border-t-4 lg:sticky lg:top-28" style={{ borderColor: 'white' }}>
               <h3 className="font-display font-bold uppercase mb-8 text-xs tracking-[0.2em] text-zinc-500">
                 Data Sheet del Proyecto
               </h3>
               <ul className="space-y-8">
                 {project.details.map((detail, idx) => (
                   <li key={idx} className="text-sm md:text-base text-zinc-400 leading-snug border-b border-zinc-800/50 pb-6 last:border-0 last:pb-0">
-                    <span className="text-[#0061FF] font-black block mb-2 uppercase text-[10px] tracking-widest">Especificación 0{idx + 1}</span>
+                    <span className="font-black block mb-2 uppercase text-[10px] tracking-widest" style={{ color: accentColor }}>
+                      Especificación 0{idx + 1}
+                    </span>
                     {detail}
                   </li>
                 ))}
@@ -91,7 +102,19 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
         <div className="mt-32 text-center pb-32 border-t border-zinc-900 pt-20">
           <button 
             onClick={onClose}
-            className="text-2xl md:text-4xl font-display font-black uppercase hover:text-[#0061FF] transition-all border-b-4 border-white hover:border-[#0061FF] pb-4 inline-block tracking-tighter"
+            className="text-2xl md:text-4xl font-display font-black uppercase transition-all border-b-4 pb-4 inline-block tracking-tighter"
+            style={{ 
+              borderColor: 'white',
+              color: 'white'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = accentColor;
+              e.currentTarget.style.borderColor = accentColor;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = 'white';
+              e.currentTarget.style.borderColor = 'white';
+            }}
           >
             ← Volver al Índice
           </button>
@@ -103,13 +126,7 @@ const ProjectGallery: React.FC<{ project: Project; onClose: () => void }> = ({ p
 
 // Componente de Tarjeta de Proyecto
 const ProjectCard: React.FC<{ project: Project; onOpen: (p: Project) => void }> = ({ project, onOpen }) => {
-  const projectColors: Record<string, string> = {
-    'breaking-news': '#FF0000',
-    'youtube-ctr': '#FFCC00',
-    'rar-automotores': '#0061FF'
-  };
-
-  const accentColor = projectColors[project.id] || '#0061FF';
+  const accentColor = PROJECT_THEMES[project.id] || '#0061FF';
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -165,19 +182,19 @@ const App: React.FC = () => {
   const projects: Project[] = [
     {
       id: 'breaking-news',
-      category: 'Redes Sociales',
-      title: 'Breaking News: Pulso Digital',
-      concept: 'Diseño de un sistema de placas informativas optimizadas para la inmediatez del ecosistema periodístico digital.',
-      image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop',
+      category: 'Branding',
+      title: 'PL: Sueño de Barrio',
+      concept: 'Diseño de la marca de un equipo de futbol amateur, llevando a otro nivel su identidad y cultura.',
+      image: 'https://drive.google.com/file/d/1BD-EtPpDpkr6OViCtA4UJxpHXHSNx9gY/view?usp=sharing',
       gallery: [
-        'https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=1200&auto=format',
-        'https://images.unsplash.com/photo-1585829365234-781fcd0d434b?q=80&w=1200&auto=format',
-        'https://images.unsplash.com/photo-1546422904-90eab23c3d7e?q=80&w=1200&auto=format'
+        'https://drive.google.com/file/d/1BD-EtPpDpkr6OViCtA4UJxpHXHSNx9gY/view?usp=sharing',
+        'https://drive.google.com/file/d/1MP1jWFLv-4egJPkJ9nS5n0ng05FmqiXF/view?usp=sharing',
+        'https://drive.google.com/file/d/1UyQuVrdZrpq-Z612BjJYCAM0N317lu-l/view?usp=sharing'
       ],
       details: [
         'Tipografía: Uso de Archivo Black por su peso visual.',
-        'Paleta: Alto contraste (Rojo #FF0000, Blanco, Negro).',
-        'Retícula: Diseño modular para edición ultra-rápida.'
+        'Paleta: Alto contraste focalizado en la cultura de barrio.',
+        'Retícula: Diseño modular para aplicaciones físicas y digitales.'
       ]
     },
     {
@@ -204,7 +221,7 @@ const App: React.FC = () => {
       image: 'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
       gallery: [
         'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
-        'https://images.unsplash.com/photo-1562141982-c1a1a44099e1?q=80&w=1200&auto=format',
+        'https://drive.google.com/file/d/1nGh-pngnQdHdkXzlNe3MlTdROkMLq4a1/view?usp=sharing',
         'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1200&auto=format'
       ],
       details: [
