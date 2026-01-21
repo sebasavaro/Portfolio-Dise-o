@@ -301,15 +301,15 @@ const App: React.FC = () => {
       image: 'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
       gallery: [
         'https://drive.google.com/file/d/12N-LLBBmuOettsBSgYuPRXNUZ2-9xobx/view?usp=sharing',
-        'https://drive.google.com/file/d/1CRuXRJdLsSHx_eyhNJkPqhBjP6m2jR7y/view?usp=sharing',
         'https://drive.google.com/file/d/15Jxb7hqRi1DBbMRPFq91dM3_CZbPKkTe/view?usp=sharing',
-        'https://drive.google.com/file/d/1g3v05XrgMDojzYy9Nq9Rc5KkfoYxCJD-/view?usp=sharing'
+        'https://drive.google.com/file/d/1g3v05XrgMDojzYy9Nq9Rc5KkfoYxCJD-/view?usp=sharing',
+        'https://drive.google.com/file/d/1CRuXRJdLsSHx_eyhNJkPqhBjP6m2jR7y/view?usp=sharing'
       ],
       details: [
         'Concepto: "Velocidad y Precisión" basado en aerodinámica.',
         'Cromática: Negro Base, Azul Eléctrico y Blanco.',
         'Tipografía: Ethnocentric expandida para estabilidad institucional.',
-        'Expansión: Adaptación omnicanal de digital a señalética física.'
+        'Expansión: Adaptación omnicanal tanto digital como físico.'
       ]
     }
   ];
